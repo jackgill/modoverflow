@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+{% block content %}
+<form class="form-horizontal" method="post">
+  <legend>Create Account</legend>
+  <div class="control-group">
+	<label class="control-label" for="first_name">First Name</label>
+	<div class="controls">
+	  <input type="text" name="first_name"/>
+	</div>
+  </div>
+  
+  <div class="control-group">
+	<label class="control-label" for="last_name">Last Name</label>
+	<div class="controls">
+	  <input type="text" name="last_name"/>
+	</div>
+  </div>
+  
+  <div class="control-group">
+	<label class="control-label" for="email">Email</label>
+	<div class="controls">
+	  <input type="text" name="email"/>
+	</div>
+  </div>
+
+  <div class="control-group">
+	<label class="control-label" for="password_text">Password</label>
+	<div class="controls">
+	  <input type="password" name="password_text"/>
+	</div>
+  </div>
+
+  <div class="control-group">
+	<div class="controls">
+	  <button type="submit" class="btn">Submit</button>
+	</div>
+  </div>
+</form>
+{% endblock %}

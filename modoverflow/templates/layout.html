@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+  <head>
+    {% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}">
+    <title>MOD Overflow</title>
+    {% endblock %}
+  </head>
+  <body>
+	<div class="container">
+	  <!-- welcome banner -->
+	  <div class="row">
+		{% if 'first_name' in session %}
+		Welcome, {{ session['first_name'] }}
+		<a href="{{ url_for('logout') }}">Logout</a>
+		{% elif not hide_login %}
+		<a href="{{ url_for('login') }}">Login</a>
+		{% endif %}
+	  </div>
+
+	  <!-- flash -->
+	  {% with messages = get_flashed_messages() %}
+	  {% if messages %}
+      {% for message in messages %}
+      <div class="alert">{{ message }}</div>
+      {% endfor %}
+	  {% endif %}
+	  {% endwith %}
+
+	  <!-- content block -->
+	  {% block content %}{% endblock %}
+	</div>
+	<div id="footer">
+      {% block footer %}
+      {% endblock %}
+	</div>
+  </body>
+</html>
