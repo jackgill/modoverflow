@@ -1,0 +1,32 @@
+* Install
+easy_install SQLAlchemy
+easy_install Flask
+git clone https://github.com/jackgill/modoverflow.git
+* Database tables
+All columns are NOT NULL unless otherwise noted.
+PK = Primary Key
+FK = Foreign Key
+** Users
+|---------+------------+-----------+---------------+-------------------|
+| Id (PK) | First Name | Last Name | Email Address | Password (hashed) |
+|---------+------------+-----------+---------------+-------------------|
+** Questions
+|---------+-------+-------------------------+------+-------|
+| Id (PK) | Title | Submitter_Id (FK Users) | Text | Votes |
+|---------+-------+-------------------------+------+-------|
+** Answers
+|---------+----------------------------+-------------------------+------+-------+-------------|
+| Id (PK) | Question_Id (FK Questions) | Submitter_Id (FK Users) | Text | Votes | Is_Accepted |
+|---------+----------------------------+-------------------------+------+-------+-------------|
+** Comments
+|---------+--------------------------------------+----------------------------------+-------------------------+------+-------|
+| Id (PK) | Question_Id (FK Questions, Nullable) | Answer_Id (FK Answers, Nullable) | Submitter_Id (FK Users) | Text | Votes |
+|---------+--------------------------------------+----------------------------------+-------------------------+------+-------|
+* Pages
+** Splash page
+** Leaderboards
+** Search page
+** Submit a Question page
+** Question page
+** Login page
+** Create account page
