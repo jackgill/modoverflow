@@ -37,3 +37,8 @@ FK = Foreign Key
 ** Question page
 ** Login page
 ** Create account page
+* Todo
+- nav bar
+- answers
+- admin page
+- splash page / home page

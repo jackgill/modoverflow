@@ -2,27 +2,18 @@
 {% block content %}
 <div class="row">
   <div class="span-6">
-	<table class="table">
-	  <caption>Questions</caption>
-	  <thead>
-		<tr>
-		  <th>Title</th>
-		  <th>Body</th>
-		  <th>Submitter</th>
-		  <th>Votes</th>
-		</tr>
-	  </thead>
-	  <tbody>
-		{% for question in questions %}
-		<tr>
-		  <td>{{ question.title }}</td>
-		  <td>{{ question.body }}</td>
-		  <td>{{ question.submitter.email }}</td>
-		  <td>{{ question.votes }}</td>
-		</tr>
-		{% endfor %}
-	  </tbody>
-	</table>
+	<h1>Questions</h1>
+	<ul class="unstyled">
+	{% for question in questions %}
+	<li>
+	  <h4>{{ question.title }}</h4>
+	  <p>{{ question.body }}</p>
+	  <strong>Submitter:</strong> {{ question.submitter.email }}
+	  <br/>
+	  <strong>Votes:</strong> {{ question.votes }}
+	</li>
+	{% endfor %}
+	</ul>
   </div>
 </div>
 {% endblock %}
