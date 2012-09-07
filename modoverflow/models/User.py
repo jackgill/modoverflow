@@ -1,4 +1,5 @@
 from sqlalchemy import Column, Integer, String, Boolean
+from sqlalchemy.orm import relationship, backref
 from modoverflow.database import Base
 import hashlib
 import string
@@ -14,6 +15,8 @@ class User(Base):
     password_hash = Column(String)
     password_salt = Column(String)
     is_admin = Column(Boolean)
+
+    #questions = relationship("Question", order_by="Question.id", backref="submitter")
     
     def __repr__(self):
         return '<User %s>' % (self.email)

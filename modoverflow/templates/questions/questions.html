@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="row">
+  <div class="span-6">
+	<table class="table">
+	  <caption>Questions</caption>
+	  <thead>
+		<tr>
+		  <th>Title</th>
+		  <th>Body</th>
+		  <th>Submitter</th>
+		  <th>Votes</th>
+		</tr>
+	  </thead>
+	  <tbody>
+		{% for question in questions %}
+		<tr>
+		  <td>{{ question.title }}</td>
+		  <td>{{ question.body }}</td>
+		  <td>{{ question.submitter.email }}</td>
+		  <td>{{ question.votes }}</td>
+		</tr>
+		{% endfor %}
+	  </tbody>
+	</table>
+  </div>
+</div>
+{% endblock %}

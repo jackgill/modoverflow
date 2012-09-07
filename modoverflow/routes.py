@@ -1,6 +1,6 @@
 from modoverflow import app
 from modoverflow.database import db_session
-from modoverflow.models import User
+from modoverflow.models import *
 from flask import render_template, request, redirect, url_for, session, flash
 
 @app.route('/')
@@ -29,7 +29,36 @@ def users_new():
         
         return redirect(url_for('users'))
     else:
-        return render_template('users/new.html', users=users)
+        return render_template('users/new.html')
+
+# Questions
+@app.route('/questions')
+def questions():
+    questions = Question.query.all()
+    return render_template('questions/questions.html', questions=questions)
+
+@app.route('/questions/new', methods=['GET', 'POST'])
+def questions_new():
+    if request.method == 'POST':
+        users = User.query.filter(User.email == session['email'])
+        if users.count() == 0:
+            raise Exception('No user found')
+        user = users[0]
+        
+        # Builder Question object from form values
+        question = Question()
+        question.title = request.form['title']
+        question.body = request.form['body']
+        question.submitter_id = user.id
+        question.votes = 0
+
+        # Save user to database
+        db_session.add(question)
+        db_session.commit()
+        
+        return redirect(url_for('questions'))
+    else:
+        return render_template('questions/new.html')
 
 # Login / Logout
 @app.route('/login', methods=['GET', 'POST'])
