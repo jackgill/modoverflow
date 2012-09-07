@@ -42,3 +42,7 @@ FK = Foreign Key
 - answers
 - admin page
 - splash page / home page
+
+- get rid of users index, should be an offline report
+- quesionts / answers need timestamps
+ support quesiotn /answer version, editing? separate content table?
