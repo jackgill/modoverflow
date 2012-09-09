@@ -1,31 +1,38 @@
 {% extends "layout.html" %}
+{% block head %}
+{{ super() }}
+<script src="{{ url_for('static', filename='scripts/question.js') }}"></script>
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/question.css') }}">
+{% endblock %}
+
 {% block content %}
 <h2>{{ question.title }}</h2>
 <p>{{ question.body }}</p>
-<strong>Submitter:</strong> {{ question.submitter.email }}
-<br/>
+<strong>Submitter:</strong> {{ question.submitter.first_name + ' ' + question.submitter.last_name }}
 <strong>Votes:</strong> {{ question.votes }}
+<i class="icon-arrow-up" data-entity-id="{{question.id}}" data-entity-type="question" data-vote="up"></i>
+<i class="icon-arrow-down" data-entity-id="{{question.id}}" data-entity-type="question" data-vote="down"></i>
 
 <hr>
 
 <ul class="unstyled">
-  <li>
 	{% for answer in question.answers %}
-	<p>{{ answer.text }}</p>
-	<strong>Submitter:</strong> {{ answer.submitter.email }}
-	<br/>
-	<strong>Votes:</strong> {{ answer.votes }}
+	<li>
+		<p>{{ answer.text }}</p>
+		<strong>Submitter:</strong> {{ question.submitter.first_name + ' ' + question.submitter.last_name }}
+		<strong>Votes:</strong> {{ answer.votes }}
+		<i class="icon-arrow-up" data-entity-id="{{answer.id}}" data-entity-type="answer" data-vote="up"></i>
+		<i class="icon-arrow-down" data-entity-id="{{answer.id}}" data-entity-type="answer" data-vote="down"></i>
+	</li>
 	{% endfor %}
-  </li>
 </ul>
 
 <!-- Answer form -->
-<form class="form-horizontal" method="post" action="/answers/new">
+<form method="post" action="/answers/new">
   <input type="hidden" name="question_id" value="{{ question.id }}" />
   
   <legend>Answer this question</legend>
   <div class="control-group">
-	<label class="control-label" for="text">Answer</label>
 	<div class="controls">
 	  <textarea name="text"></textarea>
 	</div>

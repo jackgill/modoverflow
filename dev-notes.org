@@ -38,8 +38,11 @@ FK = Foreign Key
 ** Login page
 ** Create account page
 * Todo
-- add answers
-- add voting
+- add answer acceptance
+- answers need to be sorted by votes
+- add comments
+- need multiple views of questions - newest, most votes, etc
+- need pagination for questions and answers
 - script to generate questions and answers based on shakespeare
 - questions / answers need timestamps
 - support question / answer version, editing? separate content table?

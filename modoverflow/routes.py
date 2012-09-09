@@ -88,6 +88,28 @@ def answers_new():
 
     return redirect(url_for('question', id=question_id))
 
+# Voting
+@app.route('/vote', methods=[ 'POST' ])
+def vote():
+    entity_type = request.form['entity_type']
+    vote = request.form['vote']
+    entities = {
+        'question': Question,
+        'answer': Answer,
+        }
+    entity = entities[entity_type]
+    objects = entity.query.filter(entity.id == request.form['entity_id'])
+    if objects.count() > 0:
+        obj = objects[0]
+        if vote == 'up':
+            obj.votes += 1
+        elif vote == 'down':
+            obj.votes -= 1
+        db_session.add(obj)
+        db_session.commit()
+    else:
+        return "{ success: false }"
+    return "{ success: true }"
 
 # Login / Logout
 @app.route('/login', methods=['GET', 'POST'])
