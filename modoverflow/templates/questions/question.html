@@ -1,0 +1,8 @@
+{% extends "layout.html" %}
+{% block content %}
+<h2>{{ question.title }}</h2>
+<p>{{ question.body }}</p>
+<strong>Submitter:</strong> {{ question.submitter.email }}
+<br/>
+<strong>Votes:</strong> {{ question.votes }}
+{% endblock %}

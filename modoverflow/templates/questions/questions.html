@@ -6,7 +6,7 @@
 	<ul class="unstyled">
 	{% for question in questions %}
 	<li>
-	  <h4>{{ question.title }}</h4>
+	  <h4><a href="/questions/{{ question.id }}">{{ question.title }}</a></h4>
 	  <p>{{ question.body }}</p>
 	  <strong>Submitter:</strong> {{ question.submitter.email }}
 	  <br/>

@@ -38,7 +38,6 @@ FK = Foreign Key
 ** Login page
 ** Create account page
 * Todo
-- need questions detail page
 - add answers
 - add voting
 - script to generate questions and answers based on shakespeare

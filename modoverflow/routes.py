@@ -32,6 +32,15 @@ def questions():
     questions = Question.query.all()
     return render_template('questions/questions.html', questions=questions)
 
+@app.route('/questions/<id>')
+def question(id):
+    questions = Question.query.filter(Question.id == id)
+    if questions.count() > 0:
+        return render_template('questions/question.html', question=questions[0])
+    else:
+        flash('Question not found.')
+        return redirect(url_for('root'))
+
 @app.route('/questions/new', methods=['GET', 'POST'])
 def questions_new():
     if request.method == 'POST':
