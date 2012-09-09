@@ -5,4 +5,36 @@
 <strong>Submitter:</strong> {{ question.submitter.email }}
 <br/>
 <strong>Votes:</strong> {{ question.votes }}
+
+<hr>
+
+<ul class="unstyled">
+  <li>
+	{% for answer in question.answers %}
+	<p>{{ answer.text }}</p>
+	<strong>Submitter:</strong> {{ answer.submitter.email }}
+	<br/>
+	<strong>Votes:</strong> {{ answer.votes }}
+	{% endfor %}
+  </li>
+</ul>
+
+<!-- Answer form -->
+<form class="form-horizontal" method="post" action="/answers/new">
+  <input type="hidden" name="question_id" value="{{ question.id }}" />
+  
+  <legend>Answer this question</legend>
+  <div class="control-group">
+	<label class="control-label" for="text">Answer</label>
+	<div class="controls">
+	  <textarea name="text"></textarea>
+	</div>
+  </div>
+  
+  <div class="control-group">
+	<div class="controls">
+	  <button type="submit" class="btn">Submit</button>
+	</div>
+  </div>
+</form>
 {% endblock %}

@@ -12,7 +12,7 @@ class Question(Base):
     submitter_id = Column(String, ForeignKey('Users.id'))
     votes = Column(Integer)
 
-    submitter = relationship("User", backref=backref('Questions', order_by=id))
+    submitter = relationship("User", backref=backref('questions', order_by=id))
     
     def __repr__(self):
         return '<Question %s>' % (self.title)

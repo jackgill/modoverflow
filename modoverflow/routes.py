@@ -49,20 +49,45 @@ def questions_new():
             raise Exception('No user found')
         user = users[0]
         
-        # Builder Question object from form values
+        # Build Question object from form values
         question = Question()
         question.title = request.form['title']
         question.body = request.form['body']
         question.submitter_id = user.id
         question.votes = 0
 
-        # Save user to database
+        # Save question to database
         db_session.add(question)
         db_session.commit()
         
         return redirect(url_for('questions'))
     else:
         return render_template('questions/new.html')
+
+# Answers
+@app.route('/answers/new', methods=[ 'POST' ])
+def answers_new():
+    users = User.query.filter(User.email == session['email'])
+    if users.count() == 0:
+        raise Exception('No user found')
+    user = users[0]
+
+    question_id = request.form['question_id']
+    # Build Answer object from form values
+    answer = Answer()
+    answer.text = request.form['text']
+    answer.submitter_id = user.id
+    answer.question_id = question_id
+    answer.votes = 0
+
+    # Save answer to database
+    db_session.add(answer)
+    db_session.commit()
+
+    flash('You have answered this question.')
+
+    return redirect(url_for('question', id=question_id))
+
 
 # Login / Logout
 @app.route('/login', methods=['GET', 'POST'])

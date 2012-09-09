@@ -16,8 +16,6 @@ class User(Base):
     password_salt = Column(String)
     is_admin = Column(Boolean)
 
-    #questions = relationship("Question", order_by="Question.id", backref="submitter")
-    
     def __repr__(self):
         return '<User %s>' % (self.email)
 
