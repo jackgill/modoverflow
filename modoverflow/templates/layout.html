@@ -8,14 +8,22 @@
   </head>
   <body>
 	<div class="container">
-	  <!-- welcome banner -->
-	  <div class="row">
-		{% if 'first_name' in session %}
-		Welcome, {{ session['first_name'] }}
-		<a href="{{ url_for('logout') }}">Logout</a>
-		{% elif not hide_login %}
-		<a href="{{ url_for('login') }}">Login</a>
-		{% endif %}
+	  <!-- Nav Bar -->
+	  <div class="navbar">
+		<div class="navbar-inner">
+		  <a class="brand" href="/">MOD Overflow</a>
+		  <ul class="nav">
+			<li><a href="/questions">Questions</a></li>
+		  </ul>
+		  <span class="pull-right">
+			{% if 'first_name' in session %}
+			Welcome, {{ session['first_name'] }}
+			<a href="{{ url_for('logout') }}">Logout</a>
+			{% elif not hide_login %}
+			<a href="{{ url_for('login') }}">Login</a>
+			{% endif %}
+		</span>
+		</div>
 	  </div>
 
 	  <!-- flash -->

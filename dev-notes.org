@@ -38,11 +38,11 @@ FK = Foreign Key
 ** Login page
 ** Create account page
 * Todo
-- nav bar
-- answers
-- admin page
-- splash page / home page
-
+- need questions detail page
+- add answers
+- add voting
+- script to generate questions and answers based on shakespeare
 - get rid of users index, should be an offline report
-- quesionts / answers need timestamps
- support quesiotn /answer version, editing? separate content table?
+- questions / answers need timestamps
+- support question / answer version, editing? separate content table?
+- theme: dark background, use solarized for colors? custom font. use leaves, orange/gold fall theme.
