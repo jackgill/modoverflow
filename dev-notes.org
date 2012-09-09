@@ -42,7 +42,6 @@ FK = Foreign Key
 - add answers
 - add voting
 - script to generate questions and answers based on shakespeare
-- get rid of users index, should be an offline report
 - questions / answers need timestamps
 - support question / answer version, editing? separate content table?
 - theme: dark background, use solarized for colors? custom font. use leaves, orange/gold fall theme.

@@ -8,11 +8,6 @@ def root():
     return render_template('index.html')
 
 # Users
-@app.route('/users')
-def users():
-    users = User.query.all()
-    return render_template('users/users.html', users=users)
-
 @app.route('/users/new', methods=['GET', 'POST'])
 def users_new():
     if request.method == 'POST':
