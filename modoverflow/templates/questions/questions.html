@@ -8,7 +8,7 @@
 	<li>
 	  <h4><a href="/questions/{{ question.id }}">{{ question.title }}</a></h4>
 	  <p>{{ question.body }}</p>
-	  <strong>Submitter:</strong> {{ question.submitter.email }}
+	  <strong>Submitter:</strong> {{ question.submitter.first_name + ' ' + question.submitter.last_name }}
 	  <br/>
 	  <strong>Votes:</strong> {{ question.votes }}
 	</li>

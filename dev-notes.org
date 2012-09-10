@@ -39,7 +39,9 @@ FK = Foreign Key
 ** Login page
 ** Create account page
 * Todo
+- accepted answer should always be first
 - add comments
+  - two classes/tables? QuestionComment and AnswerComment?
 - need multiple views of questions - newest, most votes, etc
 - need pagination for questions and answers
 - script to generate questions and answers based on shakespeare
