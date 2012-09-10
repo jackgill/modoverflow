@@ -16,15 +16,22 @@
 <hr>
 
 <ul class="unstyled">
-	{% for answer in question.answers %}
-	<li>
-		<p>{{ answer.text }}</p>
-		<strong>Submitter:</strong> {{ question.submitter.first_name + ' ' + question.submitter.last_name }}
-		<strong>Votes:</strong> {{ answer.votes }}
-		<i class="icon-arrow-up" data-entity-id="{{answer.id}}" data-entity-type="answer" data-vote="up"></i>
-		<i class="icon-arrow-down" data-entity-id="{{answer.id}}" data-entity-type="answer" data-vote="down"></i>
-	</li>
-	{% endfor %}
+  {% for answer in question.answers %}
+  <li>
+	{% if answer.is_accepted %}
+	<i class="icon-ok"></i>
+	{% endif %}
+	<p>{{ answer.text }}</p>
+	<strong>Submitter:</strong> {{ question.submitter.first_name + ' ' + question.submitter.last_name }}
+	<strong>Votes:</strong> {{ answer.votes }}
+	<i class="icon-arrow-up" data-entity-id="{{answer.id}}" data-entity-type="answer" data-vote="up"></i>
+	<i class="icon-arrow-down" data-entity-id="{{answer.id}}" data-entity-type="answer" data-vote="down"></i>
+	{% if session['email'] == question.submitter.email and not question.is_answered %}
+	<br>
+	<button class="btn btn-secondary accept-answer" data-answer-id="{{ answer.id }}" data-question-id="{{ question.id }}">Accept</button>
+	{% endif %}
+  </li>
+  {% endfor %}
 </ul>
 
 <!-- Answer form -->
@@ -40,7 +47,7 @@
   
   <div class="control-group">
 	<div class="controls">
-	  <button type="submit" class="btn">Submit</button>
+	  <button type="submit" class="btn btn-primary">Submit</button>
 	</div>
   </div>
 </form>

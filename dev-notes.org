@@ -9,6 +9,7 @@ python
 >>> database.init_db()
 
 SELECT name FROM sqlite_master WHERE type='table' ORDER BY name;
+ALTER TABLE Questions ADD is_answered INTEGER;
 * Database tables
 All columns are NOT NULL unless otherwise noted.
 PK = Primary Key
@@ -18,9 +19,9 @@ FK = Foreign Key
 | Id (PK) | First Name | Last Name | Email Address | Password (hashed) | Salt | Is_Admin |
 |---------+------------+-----------+---------------+-------------------+------+----------|
 ** Questions
-|---------+-------+-------------------------+------+-------|
-| Id (PK) | Title | Submitter_Id (FK Users) | Body | Votes |
-|---------+-------+-------------------------+------+-------|
+|---------+-------+-------------------------+------+-------+-------------|
+| Id (PK) | Title | Submitter_Id (FK Users) | Body | Votes | Is_Answered |
+|---------+-------+-------------------------+------+-------+-------------|
 ** Answers
 |---------+----------------------------+-------------------------+------+-------+-------------|
 | Id (PK) | Question_Id (FK Questions) | Submitter_Id (FK Users) | Text | Votes | Is_Accepted |
@@ -38,8 +39,6 @@ FK = Foreign Key
 ** Login page
 ** Create account page
 * Todo
-- add answer acceptance
-- answers need to be sorted by votes
 - add comments
 - need multiple views of questions - newest, most votes, etc
 - need pagination for questions and answers
@@ -47,3 +46,4 @@ FK = Foreign Key
 - questions / answers need timestamps
 - support question / answer version, editing? separate content table?
 - theme: dark background, use solarized for colors? custom font. use leaves, orange/gold fall theme.
+- limit users to one vote per entity

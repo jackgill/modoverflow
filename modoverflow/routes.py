@@ -22,7 +22,7 @@ def users_new():
         db_session.add(user)
         db_session.commit()
         
-        return redirect(url_for('users'))
+        return redirect(url_for('root'))
     else:
         return render_template('users/new.html')
 
@@ -87,6 +87,41 @@ def answers_new():
     flash('You have answered this question.')
 
     return redirect(url_for('question', id=question_id))
+
+@app.route('/answers/accept', methods=[ 'POST' ])
+def accept_answer():
+    answer_id = request.form['answer_id']
+    question_id = request.form['question_id']
+    
+    questions = Question.query.filter(Question.id == question_id)
+    if questions.count > 0:
+        question = questions[0]
+        # Make sure the current user submitted this question
+        if session['email'] != question.submitter.email:
+            return '{ success = false, message = "You do not own this question." }'
+
+        # Make sure this question hasn't already been answered
+        if question.is_answered:
+            return '{ success = false, message = "This question has already been answered." }'
+        
+        # Mark this question as answered
+        question.is_answered = True
+    else:
+        return '{ success: false, message = "Question not found" }'
+    
+    answers = Answer.query.filter(Answer.id == answer_id)
+    if answers.count() > 0:
+        answer = answers[0]
+        answer.is_accepted = True
+    else:
+        return '{ success: false, message = "Answer not found" }'
+
+    db_session.add(question)
+    db_session.add(answer)
+    db_session.commit()
+
+    return "{ success: true }"
+
 
 # Voting
 @app.route('/vote', methods=[ 'POST' ])

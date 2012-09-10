@@ -14,7 +14,7 @@ class Answer(Base):
     is_accepted = Column(Boolean)
     
     submitter = relationship("User", backref=backref('answers', order_by=id))
-    question = relationship("Question", backref=backref('answers', order_by=id))
+    question = relationship("Question", backref=backref('answers', order_by=votes.desc()))
     
     def __repr__(self):
         return '<Answer %s>' % (self.id)
