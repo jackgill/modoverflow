@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="row">
+  <div class="span-6">
+	<h1>Questions</h1>
+	<ul class="unstyled">
+	{% for question in questions %}
+	<li>
+	  <h4><a href="/questions/{{ question.id }}">{{ question.title }}</a></h4>
+	  <p>{{ question.body }}</p>
+	  <strong>Submitter:</strong> {{ question.submitter.first_name + ' ' + question.submitter.last_name }}
+	  <br/>
+	  <strong>Votes:</strong> {{ question.votes }}
+	</li>
+	{% endfor %}
+	</ul>
+  </div>
+</div>
+{% endblock %}
