@@ -44,6 +44,7 @@ FK = Foreign Key
 ** Create account page
 * Todo
 - accepted answer should always be first
+- need better error message for when users aren't logged in but attempt to ask/answer questions
 - add comments
   - two classes/tables? QuestionComment and AnswerComment?
 - need multiple views of questions - newest, most votes, etc
